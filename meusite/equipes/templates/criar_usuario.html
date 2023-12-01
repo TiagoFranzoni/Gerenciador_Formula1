@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="page-header">
+        <h2>Criação de Usuário</h2>
+    </div>
+    <form method="POST" action=".">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}" class="label-control">
+            {{ field.label }}
+            {% if field.field.required %}*{% endif %}
+            </label>
+            {{ field }}
+            {% if field.errors %}
+            <div class="alert alert-danger">{{ field.errors }}</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    <a href="/login/" class="btn btn-info">Cancelar</a>
+    <input type=submit class="btn btn-primary" value="Criar">
+    </form>
+    <script>
+    $("input").addClass("form-control");
+    </script>
+{% endblock %}

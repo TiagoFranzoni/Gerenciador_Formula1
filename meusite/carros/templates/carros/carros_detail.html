@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+    <style>
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+        }
+    </style>
+    <a class="btn btn-primary" href="/carros/">Voltar</a>
+    <a class="btn btn-primary" href="/carros/{{ carro.pk }}/editar/">Editar</a>
+    <br></br>
+    <dl class="dl-horizontal">
+        <dt><h4><strong>Nome do Carro:</dt></h4></strong>
+        <dd><h4><strong>{{ carro.nome }}</dd></strong></h4>
+
+        <dt>Modelo do carro:</dt>
+        <dd>{{ carro.modelo|default:"-" }}</dd>
+
+        <dt>Detalhes:</dt>
+        <dd>{{ carro.detalhes|default:"-" }}</dd>
+
+        <dt>Em Uso:</dt>
+        <dd>{% if carro.em_uso %}Sim{% else %}Não{% endif %}</dd>
+
+        <dd class="button-container">
+            <form method="POST" action="/carro/{{ carro.pk }}/deletar/">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-extra-small">Excluir</button>
+            </form>
+        </dd>
+    </dl>
+{% endblock %}

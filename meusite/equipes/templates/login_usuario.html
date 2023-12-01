@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <style>
+        .page-header {
+            margin-top: 0px;
+        }
+    </style>
+    <div class="page-header">
+        <h2>Para acessar é preciso estar logado</h2>
+    </div>
+    <form method="POST" action=".">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_nome_de_usuario">Username</label>
+            <input type="text" id="id_nome_de_usuario" name="nome_de_usuario" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="id_senha">Senha</label>
+            <input type="password" id="id_senha" name="senha" class="form-control">
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+            <a href="/criar_usuario/" class="btn btn-info">Cadastrar Novo Usuário</a>
+            <input type="submit" class="btn btn-primary" value="Login">
+        </div>
+{% endblock %}

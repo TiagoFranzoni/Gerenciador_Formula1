@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+    <style>
+        .btn-extra-small {
+            padding: 0px 2px;
+            font-size: 11.5px;
+            line-height: 1.5;
+            margin-bottom: -50;
+        }
+    </style>
+    <div style="
+        display: flex; 
+        justify-content: flex-end;
+        padding: 0px 2px;
+        font-size: 10px;
+        line-height: 1.5;
+        margin-bottom: -70;">
+        <a href="/" class="btn btn-primary btn-sm">Voltar</a>
+    </div>
+
+    <div class="page_header">
+        <h2>Bibliotecas</h2>
+    </div>
+    <table class="table">
+        <a class="btn btn-primary" href="/equipes/criar/">Adicionar Equipes</a>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Ano de criação</th>
+                <th>Open Source</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in latest %}
+                <tr>
+                    <td><a href="/equipes/{{ item.pk }}">{{ item.nome }}</a></td>
+                    <td>{{ item.ano|default:"-" }}</td>
+                    <td>
+                        {% if item.openSource %}
+                            Sim
+                        {% else %}
+                            Não
+                        {% endif %}
+                    </td>
+                    <td>
+                        <form method="POST" action="/equipes/{{ item.pk }}/deletar/">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-extra-small">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

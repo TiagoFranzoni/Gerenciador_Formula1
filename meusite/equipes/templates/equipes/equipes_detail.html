@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+    <style>
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+        }
+    </style>
+    <a class="btn btn-primary" href="/equipes/">Voltar</a>
+    <a class="btn btn-primary" href="/equipes/{{ equipe.pk }}/editar/">Editar</a>
+    <br></br>
+    <dl class="dl-horizontal">
+        <dt><h4><strong>Nome da Equipe:</dt></h4></strong>
+        <dd><h4><strong>{{ equipe.nome }}</dd></strong></h4>
+
+        <dt>Detalhes:</dt>
+        <dd>{{ equipe.detalhes|default:"-" }}</dd>
+
+        <dt>Nome do Fundador:</dt>
+        <dd>{{ equipe.fundador|default:"-" }}</dd>
+
+        <dt>Administrador(res):</dt>
+        <dd>{{ equipe.administrador|default:"-" }}</dd>
+
+        <dt>Ativa:</dt>
+        <dd>{% if equipe.ativa %}Sim{% else %}Não{% endif %}</dd>
+
+        <dd class="button-container">
+            <form method="POST" action="/equipe/{{ equipe.pk }}/deletar/">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-extra-small">Excluir</button>
+            </form>
+        </dd>
+    </dl>
+{% endblock %}
