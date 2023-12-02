@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+    <style>
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+        }
+    </style>
+    <a class="btn btn-primary" href="/pilotos/">Voltar</a>
+    <a class="btn btn-primary" href="/pilotos/{{ piloto.pk }}/editar/">Editar</a>
+    <br></br>
+    <dl class="dl-horizontal">
+        <dt><h4><strong>Nome do Piloto:</dt></h4></strong>
+        <dd><h4><strong>{{ piloto.nome }}</dd></strong></h4>
+
+        <dt>Data de Nascimento:</dt>
+        <dd>{{ piloto.data_de_nascimento|default:"-" }}</dd>
+
+        <dt>Nacionalidade:</dt>
+        <dd>{{ piloto.nacionalidade|default:"-" }}</dd>
+
+        <dt>Detalhes(res):</dt>
+        <dd>{{ piloto.detalhes|default:"-" }}</dd>
+
+        <dt>Ativo:</dt>
+        <dd>{% if piloto.ativo %}Sim{% else %}Não{% endif %}</dd>
+
+        <dd class="button-container">
+            <form method="POST" action="/piloto/{{ piloto.pk }}/deletar/">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-extra-small">Excluir</button>
+            </form>
+        </dd>
+    </dl>
+{% endblock %}
