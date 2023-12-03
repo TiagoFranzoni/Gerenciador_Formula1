@@ -58,17 +58,17 @@ class EquipesDetail(generics.RetrieveUpdateDestroyAPIView):
 
 class AdicionaEquipes(View):
     """docstring"""
-    template_name = 'equipes/cria_equipes.html'
+    template_name = 'equipes/cria_equipe.html'
     context = {}
 
     def get(self, request, *args, **kwargs):
         """docstring"""
-        self.context['form'] = FormEquipe()
+        self.context['form'] = FormEquipes()
         return render(request, self.template_name, self.context)
 
     def post(self, request, *args, **kwargs):
         """docstring"""
-        form = FormEquipe(request.POST)
+        form = FormEquipes(request.POST)
         if form.is_valid():
             nome_equipe = form.cleaned_data.get('nome')
             if Equipes.objects.filter(nome=nome_equipe).exists():

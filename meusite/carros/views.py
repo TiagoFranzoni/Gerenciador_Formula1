@@ -57,7 +57,7 @@ class CarrosDetail(generics.RetrieveUpdateDestroyAPIView):
 
 class AdicionaCarros(View):
     """docstring"""
-    template_name = 'carros/cria_carros.html'
+    template_name = 'carros/cria_carro.html'
     context = {}
 
     def get(self, request, *args, **kwargs):

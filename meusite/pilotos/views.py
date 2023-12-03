@@ -57,17 +57,17 @@ class PilotosDetail(generics.RetrieveUpdateDestroyAPIView):
 
 class AdicionaPilotos(View):
     """docstring"""
-    template_name = 'pilotos/cria_pilotos.html'
+    template_name = 'pilotos/cria_piloto.html'
     context = {}
 
     def get(self, request, *args, **kwargs):
         """docstring"""
-        self.context['form'] = FormPiloto()
+        self.context['form'] = FormPilotos()
         return render(request, self.template_name, self.context)
 
     def post(self, request, *args, **kwargs):
         """docstring"""
-        form = FormPiloto(request.POST)
+        form = FormPilotos(request.POST)
         if form.is_valid():
             nome_epiloto = form.cleaned_data.get('nome')
             if Pilotos.objects.filter(nome=nome_epiloto).exists():

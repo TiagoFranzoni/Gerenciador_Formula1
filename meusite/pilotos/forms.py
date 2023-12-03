@@ -8,13 +8,19 @@ from django.contrib.auth import authenticate, login
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm
 from .models import Pilotos
+from django.forms import DateField
+from django.forms import DateInput
 
 class FormPilotos(ModelForm):
     """Docstring"""
+
     class Meta:
-        """Docstring"""
+        """Docstring."""
         model = Pilotos
-        fields = ['nome', 'data_de_nascimento']
+        fields = ['nome', 'data_de_nascimento', 'carro']
+        widgets = {
+            'data_de_nascimento': DateInput(attrs={'type': 'date'}),
+        }
 
 
 
