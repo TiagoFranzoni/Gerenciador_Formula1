@@ -13,6 +13,7 @@ class Equipes(Model):
 
     def __str__(self):
         return self.nome + ' - ' + self.data_de_criacao.strftime('%d/%m/%Y')
+    
     class Meta:
         """Docstring"""
         verbose_name_plural = 'Equipes'

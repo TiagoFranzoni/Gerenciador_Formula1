@@ -7,6 +7,15 @@
         {% endfor %}
     </div>
 {% endif %}
+    <div style="
+        display: flex; 
+        justify-content: flex-end;
+        padding: 0px 2px;
+        font-size: 10px;
+        line-height: 1.5;
+        margin-bottom: -70;">
+        <a class="btn btn-success" href="/api/equipes">API</a>
+    </div>
 <div class="page-header">
     <h2>Nova Equipe</h2>
 </div>
@@ -29,7 +38,7 @@
             {% endif %}
         </div>
         {% endfor %}
-    <a class="btn btn-primary" href="/equipes/">Cancelar</a>
+    <a class="btn btn-primary" href="/equipes/list/">Cancelar</a>
     <button type=submit class="btn btn-primary">Incluir</button>
     </form>
     <script>
