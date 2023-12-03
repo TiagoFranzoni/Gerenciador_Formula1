@@ -19,37 +19,40 @@
     </div>
 
     <div class="page_header">
-        <h2>Bibliotecas</h2>
+        <div class="row">
+            <a class="btn btn-success" href="/api/equipes">API</a>
+            <h2>Equipes</h2>
+        </div>
     </div>
     <table class="table">
         <a class="btn btn-primary" href="/equipes/criar/">Adicionar Equipes</a>
         <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Ano de criação</th>
-                <th>Open Source</th>
-            </tr>
+        <tr>
+            <th>Nome</th>
+            <th>Ano de criação</th>
+            <th>Open Source</th>
+        </tr>
         </thead>
         <tbody>
-            {% for item in latest %}
-                <tr>
-                    <td><a href="/equipes/{{ item.pk }}">{{ item.nome }}</a></td>
-                    <td>{{ item.ano|default:"-" }}</td>
-                    <td>
-                        {% if item.openSource %}
-                            Sim
-                        {% else %}
-                            Não
-                        {% endif %}
-                    </td>
-                    <td>
-                        <form method="POST" action="/equipes/{{ item.pk }}/deletar/">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger btn-extra-small">Excluir</button>
-                        </form>
-                    </td>
-                </tr>
-            {% endfor %}
+        {% for item in latest %}
+            <tr>
+                <td><a href="/equipes/{{ item.pk }}">{{ item.nome }}</a></td>
+
+                <td>
+                    {% if item.openSource %}
+                        Sim
+                    {% else %}
+                        Não
+                    {% endif %}
+                </td>
+                <td>
+                    <form method="POST" action="/equipes/{{ item.pk }}/deletar/">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-extra-small">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
 {% endblock %}

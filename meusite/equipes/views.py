@@ -18,6 +18,7 @@ from django.contrib.auth.models import User
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from .serializers import EquipesSerializer
+from django.views.generic.list import ListView
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
@@ -31,7 +32,7 @@ class Home(View):
         return render(request, 'equipes/home.html', self.context)
 
 
-class EquipesView(ArchiveIndexView):
+class EquipesView(ListView):
     """docstring"""
     model = Equipes
     date_field = 'data_de_criacao'

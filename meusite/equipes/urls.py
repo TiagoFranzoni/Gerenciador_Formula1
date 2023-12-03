@@ -1,6 +1,6 @@
 """docstring"""
 from django.urls import path
-from equipes.views import EquipesDetail, Home, AdicionaEquipes, ExcluiEquipes, EditaEquipes
+from equipes.views import EquipesDetail, Home, AdicionaEquipes, ExcluiEquipes, EditaEquipes, EquipesView
 from equipes.views import Login, CriaUsuario
 from equipes.views import EquipesList
 # from Equipes.views import EquipesView
@@ -9,7 +9,8 @@ from equipes.views import EquipesList
 urlpatterns = [
     path('', Home.as_view(), name='equipes-home'),
     
-    # path('equipes/', EquipesView.as_view(), name="equipe-view"),
+    path('equipes/list/', EquipesView.as_view(), name="equipe-view"),
+
     path('equipes/', EquipesList.as_view(), name="equipe-list"),
 
     path('equipes/<int:pk>/', EquipesDetail.as_view(), name='equipe-detail'),

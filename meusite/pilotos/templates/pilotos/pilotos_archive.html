@@ -19,36 +19,37 @@
     </div>
 
     <div class="page_header">
+        <a class="btn btn-success" href="/api/pilotos">API</a>
         <h2>Pilotos</h2>
     </div>
     <table class="table">
         <a class="btn btn-primary" href="/pilotos/criar/">Adicionar Equipes</a>
         <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Data de Nascimento</th>
-            </tr>
+        <tr>
+            <th>Nome</th>
+            <th>Data de Nascimento</th>
+        </tr>
         </thead>
         <tbody>
-            {% for item in latest %}
-                <tr>
-                    <td><a href="/pilotos/{{ item.pk }}">{{ item.nome }}</a></td>
-                    <td>{{ item.ano|default:"-" }}</td>
-                    <td>
-                        {% if item.openSource %}
-                            Sim
-                        {% else %}
-                            Não
-                        {% endif %}
-                    </td>
-                    <td>
-                        <form method="POST" action="/pilotos/{{ item.pk }}/deletar/">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger btn-extra-small">Excluir</button>
-                        </form>
-                    </td>
-                </tr>
-            {% endfor %}
+        {% for item in latest %}
+            <tr>
+                <td><a href="/pilotos/{{ item.pk }}">{{ item.nome }}</a></td>
+                <td>{{ item.ano|default:"-" }}</td>
+                <td>
+                    {% if item.openSource %}
+                        Sim
+                    {% else %}
+                        Não
+                    {% endif %}
+                </td>
+                <td>
+                    <form method="POST" action="/pilotos/{{ item.pk }}/deletar/">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-extra-small">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
 {% endblock %}

@@ -9,10 +9,21 @@
         margin-bottom: -70;">
         <a href="{% url 'logout' %}" class="btn btn-primary btn-sm">LOG OUT</a>
     </div>
+
     <div class="page-header">
         <h2>Olá {{ user.first_name }}</h2>
     </div>
-    <div style="margin-bottom: 20px;"><a href="equipes/">Gerenciar Equipes</a></div>
-    <div style="margin-bottom: 20px;"><a href="carros/">Gerenciar Carros</a></div>
-    <div style="margin-bottom: 20px;"><a href="pilotos/">Gerenciar Pilotos</a></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div style="margin-bottom: 20px;"><a href="equipes/list">Gerenciar Equipes</a></div>
+            </div>
+            <div class="col-md-4">
+                <div style="margin-bottom: 20px;"><a href="carros/list">Gerenciar Carros</a></div>
+            </div>
+            <div class="col-md-4">
+                <div style="margin-bottom: 20px;"><a href="pilotos/list">Gerenciar Pilotos</a></div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

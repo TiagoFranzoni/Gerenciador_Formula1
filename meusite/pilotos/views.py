@@ -17,6 +17,7 @@ from django.contrib.auth.models import User
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from .serializers import PilotosSerializer
+from django.views.generic.list import ListView
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
@@ -30,7 +31,7 @@ class Home(View):
         return render(request, 'pilotos/home.html', self.context)
 
 
-class PilotosView(ArchiveIndexView):
+class PilotosView(ListView):
     """docstring"""
     model = Pilotos
     date_field = 'data_de_criacao'

@@ -1,12 +1,12 @@
 """docstring"""
 from django.urls import path
-from pilotos.views import PilotosDetail, AdicionaPilotos, ExcluiPilotos, EditaPilotos
+from pilotos.views import PilotosDetail, AdicionaPilotos, ExcluiPilotos, EditaPilotos, PilotosView
 from pilotos.views import PilotosList
 # from pilotos.views import PilotosView
 
 
 urlpatterns = [   
-    # path('', PilotosView.as_view(), name="piloto-view"),
+    path('list/', PilotosView.as_view(), name="piloto-view"),
     path('', PilotosList.as_view(), name="piloto-list"),
 
     path('<int:pk>/', PilotosDetail.as_view(), name='piloto-detail'),

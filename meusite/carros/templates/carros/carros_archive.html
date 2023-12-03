@@ -19,36 +19,37 @@
     </div>
 
     <div class="page_header">
+        <a class="btn btn-success" href="/api/carros">API</a>
         <h2>Carros</h2>
     </div>
     <table class="table">
         <a class="btn btn-primary" href="/carros/criar/">Adicionar Carros</a>
         <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Ano de criação</th>
-                <th>Em Uso</th>
-            </tr>
+        <tr>
+            <th>Nome</th>
+            <th>Ano de criação</th>
+            <th>Em Uso</th>
+        </tr>
         </thead>
         <tbody>
-            {% for item in latest %}
-                <tr>
-                    <td><a href="/carros/{{ item.pk }}">{{ item.nome }}</a></td>
-                    <td>
-                        {% if item.em_uso %}
-                            Sim
-                        {% else %}
-                            Não
-                        {% endif %}
-                    </td>
-                    <td>
-                        <form method="POST" action="/carros/{{ item.pk }}/deletar/">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger btn-extra-small">Excluir</button>
-                        </form>
-                    </td>
-                </tr>
-            {% endfor %}
+        {% for item in latest %}
+            <tr>
+                <td><a href="/carros/{{ item.pk }}">{{ item.nome }}</a></td>
+                <td>
+                    {% if item.em_uso %}
+                        Sim
+                    {% else %}
+                        Não
+                    {% endif %}
+                </td>
+                <td>
+                    <form method="POST" action="/carros/{{ item.pk }}/deletar/">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-extra-small">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
 {% endblock %}
