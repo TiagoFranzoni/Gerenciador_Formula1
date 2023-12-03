@@ -1,5 +1,5 @@
 """Docstring"""
-from django.db.models import Model, BooleanField, CharField, TextField, URLField, IntegerField, DateTimeField
+from django.db.models import Model, BooleanField, CharField, TextField, DateTimeField
 
 # Create your models here.
 class Equipes(Model):

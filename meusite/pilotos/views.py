@@ -93,7 +93,7 @@ class EditaPilotos(UpdateView):
         return context
 
     def get_success_url(self):
-        return '/pilotos/'
+        return '/pilotos/list/'
 
 
 class ExcluiPilotos(View):

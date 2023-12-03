@@ -16,6 +16,7 @@ class FormEquipes(ModelForm):
         model = Equipes
         fields = ['nome', 'fundador', 'administrador', 'detalhes', 'ativa']
 
+
 class FormLogin(Form):
     """Docstring"""
     nome_de_usuario = CharField()
@@ -29,8 +30,6 @@ class FormLogin(Form):
         if user is None:
             raise ValidationError("Dados de login inválidos.")
         login(request, user)
-
-
 
 class FormNovoUsuario(Form):
     """Docstring"""

@@ -17,26 +17,24 @@
         margin-bottom: -70;">
         <a href="/" class="btn btn-primary btn-sm">Voltar</a>
     </div>
-
     <div class="page_header">
         <h2>Pilotos</h2>
     </div>
     <a class="btn btn-success mr-3" href="/api/pilotos">API</a>
-    <a class="btn btn-primary" href="/pilotos/criar/">Adicionar Equipes</a>
+    <a class="btn btn-primary" href="/pilotos/criar/">Adicionar Pilotos</a>
     <table class="table">
         <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Data de Nascimento</th>
-        </tr>
+            <tr>
+                <th>Nome</th>
+                <th>Ativo</th>
+            </tr>
         </thead>
         <tbody>
         {% for item in pilotos %}
             <tr>
                 <td><a href="/pilotos/{{ item.pk }}">{{ item.nome }}</a></td>
-                <td>{{ item.ano|default:"-" }}</td>
                 <td>
-                    {% if item.openSource %}
+                    {% if item.ativo %}
                         Sim
                     {% else %}
                         Não

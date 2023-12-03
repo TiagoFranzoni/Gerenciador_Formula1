@@ -17,11 +17,10 @@ class FormPilotos(ModelForm):
     class Meta:
         """Docstring."""
         model = Pilotos
-        fields = ['nome', 'data_de_nascimento', 'carro']
+        fields = ['nome', 'nacionalidade', 'data_de_nascimento', 'carro', 'detalhes', 'ativo']
         widgets = {
             'data_de_nascimento': DateInput(attrs={'type': 'date'}),
         }
-
 
 
 class FormLogin(Form):

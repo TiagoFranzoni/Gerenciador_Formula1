@@ -27,8 +27,7 @@
         <thead>
         <tr>
             <th>Nome</th>
-            <th>Ano de criação</th>
-            <th>Em Uso</th>
+            <th>Ativo</th>
         </tr>
         </thead>
         <tbody>
@@ -36,7 +35,7 @@
             <tr>
                 <td><a href="/carros/{{ carro.pk }}">{{ carro.nome }}</a></td>
                 <td>
-                    {% if carro.em_uso %}
+                    {% if carro.ativo %}
                         Sim
                     {% else %}
                         Não

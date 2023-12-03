@@ -8,11 +8,15 @@ class Carros(Model):
     nome = CharField(max_length=200, verbose_name='nome do carro')
     modelo = CharField(max_length=200, verbose_name='modelo do carro', null=True,  blank=True)
     detalhes = TextField(verbose_name='detalhes', null=True,  blank=True)
-    em_uso = BooleanField(default=False, verbose_name='em uso', null=True,  blank=True)
+    ativo = BooleanField(default=False, verbose_name='ativo', null=True,  blank=True)
     equipe = ForeignKey('equipes.Equipes', on_delete=CASCADE, verbose_name='equipe', null=True,  blank=True)
 
     def __str__(self):
-        return self.nome
+        nome = self.nome if self.nome is not None else ''
+        modelo = self.modelo if self.modelo is not None else ''
+        return nome + ' ' + modelo
+
+
     class Meta:
         """Docstring"""
         verbose_name_plural = 'Carros'

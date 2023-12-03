@@ -6,8 +6,8 @@ from carros.models import Carros
 # Register your models here.
 class CarrosAdmin(ModelAdmin):
     """Docstring"""
-    fields = ['nome', 'modelo', 'detalhes', 'em_uso']
-    list_display = ['nome', 'modelo', 'detalhes', 'em_uso']
-    list_editable = ['em_uso']
+    fields = ['nome', 'modelo', 'detalhes', 'ativo']
+    list_display = ['nome', 'modelo', 'detalhes', 'ativo']
+    list_editable = ['ativo']
 
 site.register(Carros, CarrosAdmin)

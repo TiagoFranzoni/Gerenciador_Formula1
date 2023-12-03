@@ -93,7 +93,7 @@ class EditaCarros(UpdateView):
         return context
 
     def get_success_url(self):
-        return '/carros/'
+        return '/carros/list/'
 
 
 class ExcluiCarros(View):
