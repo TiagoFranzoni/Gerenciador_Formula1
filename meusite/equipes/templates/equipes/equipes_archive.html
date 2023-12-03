@@ -29,17 +29,16 @@
         <thead>
         <tr>
             <th>Nome</th>
-            <th>Ano de criação</th>
-            <th>Open Source</th>
+            <th>Fundador</th>
+            <th>Ativa</th>
         </tr>
         </thead>
         <tbody>
         {% for item in equipes %}
             <tr>
                 <td><a href="/equipes/{{ item.pk }}">{{ item.nome }}</a></td>
-
                 <td>
-                    {% if item.openSource %}
+                    {% if item.ativa %}
                         Sim
                     {% else %}
                         Não

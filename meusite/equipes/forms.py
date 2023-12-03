@@ -14,7 +14,7 @@ class FormEquipes(ModelForm):
     class Meta:
         """Docstring"""
         model = Equipes
-        fields = ['nome', 'fundador', 'administrador', 'detalhes', 'ativa', ]
+        fields = ['nome', 'fundador', 'administrador', 'detalhes', 'ativa']
 
 class FormLogin(Form):
     """Docstring"""

@@ -94,7 +94,7 @@ class EditaEquipes(UpdateView):
         return context
 
     def get_success_url(self):
-        return '/equipes/'
+        return '/equipes/list/'
 
 
 class ExcluiEquipes(View):
