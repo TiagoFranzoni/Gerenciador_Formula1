@@ -31,7 +31,7 @@ class Home(View):
         return render(request, 'pilotos/home.html', self.context)
 
 
-class PilotosView(ListView):
+class PilotosView(ArchiveIndexView):
     """docstring"""
     model = Pilotos
     date_field = 'data_de_criacao'

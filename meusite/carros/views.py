@@ -31,7 +31,7 @@ class Home(View):
         return render(request, 'carros/home.html', self.context)
 
 
-class CarrosView(ListView):
+class CarrosView(ArchiveIndexView):
     """docstring"""
     model = Carros
     date_field = 'data_de_criacao'

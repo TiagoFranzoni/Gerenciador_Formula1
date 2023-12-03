@@ -32,7 +32,7 @@ class Home(View):
         return render(request, 'equipes/home.html', self.context)
 
 
-class EquipesView(ListView):
+class EquipesView(ArchiveIndexView):
     """docstring"""
     model = Equipes
     date_field = 'data_de_criacao'
