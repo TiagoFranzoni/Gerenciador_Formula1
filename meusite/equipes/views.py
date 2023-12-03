@@ -32,11 +32,11 @@ class Home(View):
         return render(request, 'equipes/home.html', self.context)
 
 
-class EquipesView(ArchiveIndexView):
+class EquipesView(ListView):
     """docstring"""
     model = Equipes
-    date_field = 'data_de_criacao'
     template_name = 'equipes/equipes_archive.html'
+    context_object_name = 'equipes'
 
 class EquipesList(generics.ListCreateAPIView):
     """docstring"""
@@ -77,7 +77,7 @@ class AdicionaEquipes(View):
                 self.context['form'] = form
                 return render(request, self.template_name, self.context)
             form.save()
-            return redirect('/equipes/')
+            return redirect('/equipes/list/')
         self.context['form'] = form
         return render(request, self.template_name, self.context)
 
@@ -110,7 +110,13 @@ class ExcluiEquipes(View):
         """docstring"""
         equipe = Equipes.objects.get(pk=kwargs['pk'])
         equipe.delete()
-        return redirect('/equipes/')
+        return redirect('/equipes/list/')
+
+    def delete(self, request, *args, **kwargs):
+        """docstring"""
+        equipe = Equipes.objects.get(pk=kwargs['pk'])
+        equipe.delete()
+        return redirect('/equipes/list/')
 
 
 class Login(View):
@@ -185,3 +191,4 @@ class CriaUsuario(View):
             return redirect('/login/')
         self.context['form'] = form
         return render(request, self.template_name, self.context)
+

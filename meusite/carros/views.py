@@ -31,10 +31,10 @@ class Home(View):
         return render(request, 'carros/home.html', self.context)
 
 
-class CarrosView(ArchiveIndexView):
+class CarrosView(ListView):
     """docstring"""
     model = Carros
-    date_field = 'data_de_criacao'
+    context_object_name = 'carros'
     template_name = 'carros/carros_archive.html'
 
 class CarrosList(generics.ListCreateAPIView):
@@ -76,7 +76,7 @@ class AdicionaCarros(View):
                 self.context['form'] = form
                 return render(request, self.template_name, self.context)
             form.save()
-            return redirect('/carros/')
+            return redirect('/carros/list/')
         self.context['form'] = form
         return render(request, self.template_name, self.context)
 
@@ -109,4 +109,4 @@ class ExcluiCarros(View):
         """docstring"""
         carro = Carros.objects.get(pk=kwargs['pk'])
         carro.delete()
-        return redirect('/carros/')
+        return redirect('/carros/list/')

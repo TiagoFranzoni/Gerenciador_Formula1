@@ -32,18 +32,18 @@
         </tr>
         </thead>
         <tbody>
-        {% for item in latest %}
+        {% for carro in carros %}
             <tr>
-                <td><a href="/carros/{{ item.pk }}">{{ item.nome }}</a></td>
+                <td><a href="/carros/{{ carro.pk }}">{{ carro.nome }}</a></td>
                 <td>
-                    {% if item.em_uso %}
+                    {% if carro.em_uso %}
                         Sim
                     {% else %}
                         Não
                     {% endif %}
                 </td>
                 <td>
-                    <form method="POST" action="/carros/{{ item.pk }}/deletar/">
+                    <form method="POST" action="/carros/{{ carro.pk }}/deletar/">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger btn-extra-small">Excluir</button>
                     </form>

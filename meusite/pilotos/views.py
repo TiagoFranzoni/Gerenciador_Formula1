@@ -31,11 +31,11 @@ class Home(View):
         return render(request, 'pilotos/home.html', self.context)
 
 
-class PilotosView(ArchiveIndexView):
+class PilotosView(ListView):
     """docstring"""
     model = Pilotos
-    date_field = 'data_de_criacao'
     template_name = 'pilotos/pilotos_archive.html'
+    context_object_name = 'pilotos'
 
 class PilotosList(generics.ListCreateAPIView):
     """docstring"""
@@ -76,7 +76,7 @@ class AdicionaPilotos(View):
                 self.context['form'] = form
                 return render(request, self.template_name, self.context)
             form.save()
-            return redirect('/pilotos/')
+            return redirect('/pilotos/list/')
         self.context['form'] = form
         return render(request, self.template_name, self.context)
 
@@ -109,4 +109,4 @@ class ExcluiPilotos(View):
         """docstring"""
         piloto = Pilotos.objects.get(pk=kwargs['pk'])
         piloto.delete()
-        return redirect('/pilotos/')
+        return redirect('/pilotos/list/')
