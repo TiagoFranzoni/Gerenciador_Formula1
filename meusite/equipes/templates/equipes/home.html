@@ -1,29 +1,37 @@
-{% extends "base.html" %}
-{% block content %}
-    <div style="
-        display: flex; 
-        justify-content: flex-end;
-        padding: 0px 2px;
-        font-size: 10px;
-        line-height: 1.5;
-        margin-bottom: -70;">
-        <a href="{% url 'logout' %}" class="btn btn-primary btn-sm">LOG OUT</a>
-    </div>
+{% extends "base.html" %} {% block content %}
+<div
+  style="
+    display: flex;
+    justify-content: flex-end;
+    padding: 0px 2px;
+    font-size: 10px;
+    line-height: 1.5;
+    margin-bottom: -70;
+  "
+>
+  <a href="{% url 'logout' %}" class="btn btn-primary btn-sm">LOG OUT</a>
+</div>
 
-    <div class="page-header">
-        <h2>Olá {{ user.first_name }}</h2>
+<div class="page-header">
+  <h2>Olá {{ user.first_name }}</h2>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-4">
+      <div style="margin-bottom: 20px; text-align: center">
+        <a href="view/equipes" class="btn btn-success">Gerenciar Equipes</a>
+      </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <div style="margin-bottom: 20px;"><a href="view/equipes">Gerenciar Equipes</a></div>
-            </div>
-            <div class="col-md-4">
-                <div style="margin-bottom: 20px;"><a href="view/carros">Gerenciar Carros</a></div>
-            </div>
-            <div class="col-md-4">
-                <div style="margin-bottom: 20px;"><a href="view/pilotos">Gerenciar Pilotos</a></div>
-            </div>
-        </div>
+    <div class="col-12 col-md-4">
+      <div style="margin-bottom: 20px; text-align: center">
+        <a href="view/carros" class="btn btn-success">Gerenciar Carros</a>
+      </div>
     </div>
+    <div class="col-12 col-md-4">
+      <div style="margin-bottom: 20px; text-align: center">
+        <a href="view/pilotos" class="btn btn-success">Gerenciar Pilotos</a>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
