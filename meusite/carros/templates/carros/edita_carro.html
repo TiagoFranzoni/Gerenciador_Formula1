@@ -1,5 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
+<div style="
+    display: flex; 
+    justify-content: flex-end;
+    padding: 0px 2px;
+    font-size: 10px;
+    line-height: 1.5;
+    margin-bottom: -70;">
+    <a class="btn btn-success" href="/api/carros/{{ carro.pk }}">API</a>
+</div>
 <div class="page-header">
     <h2>Editar Carros</h2>
 </div>
@@ -22,7 +31,7 @@
             {% endif %}
         </div>
         {% endfor %}
-    <a class="btn btn-primary" href="/carros/{{ carro.pk }}">Cancelar</a>
+    <a class="btn btn-primary" href="/view/carros/detail/{{ carro.pk }}">Cancelar</a>
     <button type=submit class="btn btn-primary">Salvar</button>
     </form>
     <script>

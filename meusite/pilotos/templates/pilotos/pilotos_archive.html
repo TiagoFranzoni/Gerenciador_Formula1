@@ -21,7 +21,7 @@
         <h2>Pilotos</h2>
     </div>
     <a class="btn btn-success mr-3" href="/api/pilotos">API</a>
-    <a class="btn btn-primary" href="/pilotos/criar/">Adicionar Pilotos</a>
+    <a class="btn btn-primary" href="/view/pilotos/criar/">Adicionar Pilotos</a>
     <table class="table">
         <thead>
             <tr>
@@ -30,9 +30,9 @@
             </tr>
         </thead>
         <tbody>
-        {% for item in pilotos %}
+        {% for item in piloto %}
             <tr>
-                <td><a href="/pilotos/{{ item.pk }}">{{ item.nome }}</a></td>
+                <td><a href="/view/pilotos/{{ item.pk }}">{{ item.nome }}</a></td>
                 <td>
                     {% if item.ativo %}
                         Sim
@@ -41,7 +41,7 @@
                     {% endif %}
                 </td>
                 <td>
-                    <form method="POST" action="/pilotos/{{ item.pk }}/deletar/">
+                    <form method="POST" action="/view/pilotos/{{ item.pk }}/deletar/">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger btn-extra-small">Excluir</button>
                     </form>

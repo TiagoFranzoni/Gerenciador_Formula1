@@ -7,4 +7,4 @@ class FormCarros(ModelForm):
     class Meta:
         """Docstring"""
         model = Carros
-        fields = ['nome', 'modelo', 'equipe', 'detalhes', 'ativo']
+        fields = ['nome', 'modelo', 'detalhes', 'ativo', 'equipe']

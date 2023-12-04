@@ -7,8 +7,17 @@
             align-items: end;
         }
     </style>
-    <a class="btn btn-primary" href="/carros/">Voltar</a>
-    <a class="btn btn-primary" href="/carros/{{ carro.pk }}/editar/">Editar</a>
+    <div style="
+        display: flex; 
+        justify-content: flex-end;
+        padding: 0px 2px;
+        font-size: 10px;
+        line-height: 1.5;
+        margin-bottom: -70;">
+        <a class="btn btn-success" href="/api/carros/{{ carro.pk }}">API</a>
+    </div>
+    <a class="btn btn-primary" href="/view/carros/">Voltar</a>
+    <a class="btn btn-primary" href="/view/carros/{{ carro.pk }}/editar/">Editar</a>
     <br></br>
     <dl class="dl-horizontal">
         <dt><h4><strong>Nome do Carro:</dt></h4></strong>
@@ -24,7 +33,7 @@
         <dd>{% if carro.em_uso %}Sim{% else %}Não{% endif %}</dd>
 
         <dd class="button-container">
-            <form method="POST" action="/carro/{{ carro.pk }}/deletar/">
+            <form method="POST" action="/view/carros/{{ carro.pk }}/deletar/">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-danger btn-extra-small">Excluir</button>
             </form>

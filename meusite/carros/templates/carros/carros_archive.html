@@ -22,7 +22,7 @@
         <h2>Carros</h2>
     </div>
     <a class="btn btn-success" href="/api/carros">API</a>
-    <a class="btn btn-primary" href="/carros/criar/">Adicionar Carros</a>
+    <a class="btn btn-primary" href="/view/carros/criar/">Adicionar Carros</a>
     <table class="table">
         <thead>
         <tr>
@@ -31,18 +31,18 @@
         </tr>
         </thead>
         <tbody>
-        {% for carro in carros %}
+        {% for item in carro %}
             <tr>
-                <td><a href="/carros/{{ carro.pk }}">{{ carro.nome }}</a></td>
+                <td><a href="/view/carros/detail/{{ item.pk }}">{{ item.nome }}</a></td>
                 <td>
-                    {% if carro.ativo %}
+                    {% if item.ativo %}
                         Sim
                     {% else %}
                         Não
                     {% endif %}
                 </td>
                 <td>
-                    <form method="POST" action="/carros/{{ carro.pk }}/deletar/">
+                    <form method="POST" action="/view/carros/{{ item.pk }}/deletar/">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger btn-extra-small">Excluir</button>
                     </form>

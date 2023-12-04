@@ -21,21 +21,11 @@ from django.views.generic.list import ListView
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
-class Home(View):
-    """docstring"""
-    template_name = 'carros/home.html'
-    context = {}
-
-    def get(self, request, *args, **kwargs):
-        """docstring"""
-        return render(request, 'carros/home.html', self.context)
-
-
 class CarrosView(ListView):
     """docstring"""
     model = Carros
-    context_object_name = 'carros'
     template_name = 'carros/carros_archive.html'
+    context_object_name = 'carro'
 
 class CarrosList(generics.ListCreateAPIView):
     """docstring"""
@@ -43,20 +33,14 @@ class CarrosList(generics.ListCreateAPIView):
     queryset = Carros.objects.all()
     serializer_class = CarrosSerializer
 
-
-# class CarrosDetail(DetailView):
-#     """docstring"""
-#     model = Carros
-#     template_name = 'carros/carros_detail.html'
-#     context_object_name = 'carros'
-
-class CarrosDetail(generics.RetrieveUpdateDestroyAPIView):
+class CarrosViewDetail(DetailView):
     """docstring"""
-    queryset = Carros.objects.all()
-    serializer_class = CarrosSerializer
+    model = Carros
+    template_name = 'carros/carros_detail.html'
+    context_object_name = 'carro'
 
 
-class AdicionaCarros(View):
+class CarrosViewAdiciona(View):
     """docstring"""
     template_name = 'carros/cria_carro.html'
     context = {}
@@ -72,20 +56,20 @@ class AdicionaCarros(View):
         if form.is_valid():
             nome_carro = form.cleaned_data.get('nome')
             if Carros.objects.filter(nome=nome_carro).exists():
-                messages.error(request, f'Já existe um Carro com o nome "{nome_carro}".')
+                messages.error(request, f'Uma biblioteca com o nome "{nome_carro}" já existe.')
                 self.context['form'] = form
                 return render(request, self.template_name, self.context)
             form.save()
-            return redirect('/carros/list/')
+            return redirect('/view/carros')
         self.context['form'] = form
         return render(request, self.template_name, self.context)
 
 
-class EditaCarros(UpdateView):
+class CarrosViewEdita(UpdateView):
     """docstring"""
     model = Carros
     form_class = FormCarros
-    template_name = 'carros/edita_carros.html'
+    template_name = 'carros/edita_carro.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -93,10 +77,10 @@ class EditaCarros(UpdateView):
         return context
 
     def get_success_url(self):
-        return '/carros/list/'
+        return '/view/carros'
 
 
-class ExcluiCarros(View):
+class CarrosViewExclui(View):
     """docstring"""
     context = {}
 
@@ -109,4 +93,16 @@ class ExcluiCarros(View):
         """docstring"""
         carro = Carros.objects.get(pk=kwargs['pk'])
         carro.delete()
-        return redirect('/carros/list/')
+        return redirect('/view/carros')
+
+    def delete(self, request, *args, **kwargs):
+        """docstring"""
+        carro = Carros.objects.get(pk=kwargs['pk'])
+        carro.delete()
+        return redirect('/view/carros')
+
+
+class CarrosDetailList(generics.RetrieveUpdateDestroyAPIView):
+    """docstring"""
+    queryset = Carros.objects.all()
+    serializer_class = CarrosSerializer

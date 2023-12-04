@@ -35,7 +35,7 @@ class PilotosView(ListView):
     """docstring"""
     model = Pilotos
     template_name = 'pilotos/pilotos_archive.html'
-    context_object_name = 'pilotos'
+    context_object_name = 'piloto'
 
 class PilotosList(generics.ListCreateAPIView):
     """docstring"""
@@ -43,20 +43,14 @@ class PilotosList(generics.ListCreateAPIView):
     queryset = Pilotos.objects.all()
     serializer_class = PilotosSerializer
 
-
-# class PilotosDetail(DetailView):
-#     """docstring"""
-#     model = Pilotos
-#     template_name = 'pilotos/pilotos_detail.html'
-#     context_object_name = 'pilotos'
-
-class PilotosDetail(generics.RetrieveUpdateDestroyAPIView):
+class PilotosViewDetail(DetailView):
     """docstring"""
-    queryset = Pilotos.objects.all()
-    serializer_class = PilotosSerializer
+    model = Pilotos
+    template_name = 'pilotos/pilotos_detail.html'
+    context_object_name = 'piloto'
 
 
-class AdicionaPilotos(View):
+class PilotosViewAdiciona(View):
     """docstring"""
     template_name = 'pilotos/cria_piloto.html'
     context = {}
@@ -70,22 +64,22 @@ class AdicionaPilotos(View):
         """docstring"""
         form = FormPilotos(request.POST)
         if form.is_valid():
-            nome_epiloto = form.cleaned_data.get('nome')
-            if Pilotos.objects.filter(nome=nome_epiloto).exists():
-                messages.error(request, f'Uma biblioteca com o nome "{nome_epiloto}" já existe.')
+            nome_piloto = form.cleaned_data.get('nome')
+            if Pilotos.objects.filter(nome=nome_piloto).exists():
+                messages.error(request, f'Uma biblioteca com o nome "{nome_piloto}" já existe.')
                 self.context['form'] = form
                 return render(request, self.template_name, self.context)
             form.save()
-            return redirect('/pilotos/list/')
+            return redirect('/view/pilotos')
         self.context['form'] = form
         return render(request, self.template_name, self.context)
 
 
-class EditaPilotos(UpdateView):
+class PilotosViewEdita(UpdateView):
     """docstring"""
     model = Pilotos
     form_class = FormPilotos
-    template_name = 'pilotos/edita_pilotos.html'
+    template_name = 'pilotos/edita_piloto.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -93,10 +87,10 @@ class EditaPilotos(UpdateView):
         return context
 
     def get_success_url(self):
-        return '/pilotos/list/'
+        return '/view/pilotos'
 
 
-class ExcluiPilotos(View):
+class PilotosViewExclui(View):
     """docstring"""
     context = {}
 
@@ -109,4 +103,16 @@ class ExcluiPilotos(View):
         """docstring"""
         piloto = Pilotos.objects.get(pk=kwargs['pk'])
         piloto.delete()
-        return redirect('/pilotos/list/')
+        return redirect('/view/pilotos')
+
+    def delete(self, request, *args, **kwargs):
+        """docstring"""
+        piloto = Pilotos.objects.get(pk=kwargs['pk'])
+        piloto.delete()
+        return redirect('/view/pilotos')
+
+
+class PilotosDetailList(generics.RetrieveUpdateDestroyAPIView):
+    """docstring"""
+    queryset = Pilotos.objects.all()
+    serializer_class = PilotosSerializer

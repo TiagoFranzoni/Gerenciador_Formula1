@@ -118,8 +118,6 @@ class EquipesDetailList(generics.RetrieveUpdateDestroyAPIView):
     queryset = Equipes.objects.all()
     serializer_class = EquipesSerializer
 
-
-
 class Login(View):
     """docstring"""
     template_name = 'login_usuario.html'
