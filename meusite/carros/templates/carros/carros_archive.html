@@ -1,54 +1,56 @@
-{% extends "base.html" %}
-{% block content %}
-    <style>
-        .btn-extra-small {
-            padding: 0px 2px;
-            font-size: 11.5px;
-            line-height: 1.5;
-            margin-bottom: -50;
-        }
-    </style>
-    <div style="
-        display: flex; 
-        justify-content: flex-end;
-        padding: 0px 2px;
-        font-size: 10px;
-        line-height: 1.5;
-        margin-bottom: -70;">
-        <a href="/" class="btn btn-primary btn-sm">Voltar</a>
-    </div>
+{% extends "base.html" %} {% block content %}
+<style>
+  .btn-extra-small {
+    padding: 0px 2px;
+    font-size: 11.5px;
+    line-height: 1.5;
+    margin-bottom: -50;
+  }
+</style>
+<div
+  style="
+    display: flex;
+    justify-content: flex-end;
+    padding: 0px 2px;
+    font-size: 10px;
+    line-height: 1.5;
+    margin-bottom: -70;
+  "
+>
+  <a href="/" class="btn btn-primary btn-sm">Voltar</a>
+</div>
 
-    <div class="page_header">
-        <h2>Carros</h2>
-    </div>
-    <a class="btn btn-success" href="/api/carros">API</a>
-    <a class="btn btn-primary" href="/view/carros/criar/">Adicionar Carros</a>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Ativo</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for item in carro %}
-            <tr>
-                <td><a href="/view/carros/detail/{{ item.pk }}">{{ item.nome }}</a></td>
-                <td>
-                    {% if item.ativo %}
-                        Sim
-                    {% else %}
-                        Não
-                    {% endif %}
-                </td>
-                <td>
-                    <form method="POST" action="/view/carros/{{ item.pk }}/deletar/">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-danger btn-extra-small">Excluir</button>
-                    </form>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<div class="page_header">
+  <h2>Carros</h2>
+</div>
+<a class="btn btn-success" href="/api/carros">API</a>
+<a class="btn btn-primary" href="/view/carros/criar/">Adicionar Carros</a>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Modelo</th>
+      <th>Equipe</th>
+      <th>Ativo</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in carro %}
+    <tr>
+      <td><a href="/view/carros/detail/{{ item.pk }}">{{ item.nome }}</a></td>
+      <td>{{ item.modelo }}</td>
+      <td>{{ item.equipe }}</td>
+      <td>{% if item.ativo %} Sim {% else %} Não {% endif %}</td>
+      <td>
+        <form method="POST" action="/view/carros/{{ item.pk }}/deletar/">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger btn-extra-small">
+            Excluir
+          </button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}

@@ -29,6 +29,7 @@
         <thead>
         <tr>
             <th>Nome</th>
+            <th>Fundador</th>
             <th>Ativa</th>
         </tr>
         </thead>
@@ -36,6 +37,7 @@
         {% for item in equipe %}
             <tr>
                 <td><a href="/view/equipes/detail/{{ item.pk }}">{{ item.nome }}</a></td>
+                <td>{{ item.fundador }}</td>
                 <td>
                     {% if item.ativa %}
                         Sim

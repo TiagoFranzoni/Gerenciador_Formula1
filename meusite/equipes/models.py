@@ -12,7 +12,7 @@ class Equipes(Model):
     ativa = BooleanField(default=True, verbose_name='ativa')
 
     def __str__(self):
-        return self.nome + ' - ' + self.data_de_criacao.strftime('%d/%m/%Y')
+        return self.nome + ' - ' + self.fundador
     
     class Meta:
         """Docstring"""

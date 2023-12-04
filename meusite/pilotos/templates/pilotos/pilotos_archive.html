@@ -26,6 +26,8 @@
         <thead>
             <tr>
                 <th>Nome</th>
+                <th>Nacionalidade</th>    
+                <th>Carro</th>   
                 <th>Ativo</th>
             </tr>
         </thead>
@@ -33,6 +35,8 @@
         {% for item in piloto %}
             <tr>
                 <td><a href="/view/pilotos/detail/{{ item.pk }}">{{ item.nome }}</a></td>
+                <td>{{ item.nacionalidade }}</td>
+                <td>{{ item.carro }}</td>
                 <td>
                     {% if item.ativo %}
                         Sim
