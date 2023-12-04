@@ -36,7 +36,7 @@ class EquipesView(ListView):
     """docstring"""
     model = Equipes
     template_name = 'equipes/equipes_archive.html'
-    context_object_name = 'equipes'
+    context_object_name = 'equipe'
 
 class EquipesList(generics.ListCreateAPIView):
     """docstring"""
@@ -44,20 +44,14 @@ class EquipesList(generics.ListCreateAPIView):
     queryset = Equipes.objects.all()
     serializer_class = EquipesSerializer
 
-
-# class EquipesDetail(DetailView):
-#     """docstring"""
-#     model = Equipes
-#     template_name = 'equipes/equipes_detail.html'
-#     context_object_name = 'equipes'
-
-class EquipesDetail(generics.RetrieveUpdateDestroyAPIView):
+class EquipesViewDetail(DetailView):
     """docstring"""
-    queryset = Equipes.objects.all()
-    serializer_class = EquipesSerializer
+    model = Equipes
+    template_name = 'equipes/equipes_detail.html'
+    context_object_name = 'equipe'
 
 
-class AdicionaEquipes(View):
+class EquipesViewAdiciona(View):
     """docstring"""
     template_name = 'equipes/cria_equipe.html'
     context = {}
@@ -77,16 +71,16 @@ class AdicionaEquipes(View):
                 self.context['form'] = form
                 return render(request, self.template_name, self.context)
             form.save()
-            return redirect('/equipes/list/')
+            return redirect('/view/equipes')
         self.context['form'] = form
         return render(request, self.template_name, self.context)
 
 
-class EditaEquipes(UpdateView):
+class EquipesViewEdita(UpdateView):
     """docstring"""
     model = Equipes
     form_class = FormEquipes
-    template_name = 'equipes/edita_equipes.html'
+    template_name = 'equipes/edita_equipe.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -94,10 +88,10 @@ class EditaEquipes(UpdateView):
         return context
 
     def get_success_url(self):
-        return '/equipes/list/'
+        return '/view/equipes'
 
 
-class ExcluiEquipes(View):
+class EquipesViewExclui(View):
     """docstring"""
     context = {}
 
@@ -110,13 +104,20 @@ class ExcluiEquipes(View):
         """docstring"""
         equipe = Equipes.objects.get(pk=kwargs['pk'])
         equipe.delete()
-        return redirect('/equipes/list/')
+        return redirect('/view/equipes')
 
     def delete(self, request, *args, **kwargs):
         """docstring"""
         equipe = Equipes.objects.get(pk=kwargs['pk'])
         equipe.delete()
-        return redirect('/equipes/list/')
+        return redirect('/view/equipes')
+
+
+class EquipesDetailList(generics.RetrieveUpdateDestroyAPIView):
+    """docstring"""
+    queryset = Equipes.objects.all()
+    serializer_class = EquipesSerializer
+
 
 
 class Login(View):
@@ -191,4 +192,3 @@ class CriaUsuario(View):
             return redirect('/login/')
         self.context['form'] = form
         return render(request, self.template_name, self.context)
-

@@ -9,7 +9,7 @@ class Equipes(Model):
     detalhes = TextField(verbose_name='detalhes', null=True,  blank=True)
     fundador = CharField(max_length=200, verbose_name='nome do fundador', null=True,  blank=True)
     administrador = CharField(max_length=200, verbose_name='nome do administrador', null=True,  blank=True)
-    ativa = BooleanField(default=False, verbose_name='ativa', null=True,  blank=True)
+    ativa = BooleanField(default=True, verbose_name='ativa')
 
     def __str__(self):
         return self.nome + ' - ' + self.data_de_criacao.strftime('%d/%m/%Y')

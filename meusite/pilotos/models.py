@@ -10,7 +10,7 @@ class Pilotos(Model):
     nacionalidade = CharField(max_length=200, verbose_name='nacionalidade', null=True,  blank=True)
     data_de_nascimento = DateField(verbose_name='data de nascimento', null=True,  blank=True)
     detalhes = TextField(verbose_name='detalhes', null=True,  blank=True)
-    ativo = BooleanField(default=False, verbose_name='ativo', null=True,  blank=True)
+    ativo = BooleanField(default=True, verbose_name='ativo')
     carro = ForeignKey('carros.Carros', on_delete=CASCADE, verbose_name='carro', null=True, blank=True)
 
     class Meta:

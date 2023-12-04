@@ -7,8 +7,20 @@
             align-items: end;
         }
     </style>
-    <a class="btn btn-primary" href="/equipes/">Voltar</a>
-    <a class="btn btn-primary" href="/equipes/{{ equipe.pk }}/editar/">Editar</a>
+    <div style="
+        display: flex; 
+        justify-content: flex-end;
+        padding: 0px 2px;
+        font-size: 10px;
+        line-height: 1.5;
+        margin-bottom: -70;">
+        <a class="btn btn-success" href="/api/equipes/{{ equipe.pk }}">API</a>
+    </div>
+    <div class="page-header">
+        <h2>Detalhes Equipe</h2>
+        <a class="btn btn-primary" href="/view/equipes">Voltar</a>
+        <a class="btn btn-primary" href="/view/equipes/{{ equipe.pk }}/editar/">Editar</a>
+    </div>
     <br></br>
     <dl class="dl-horizontal">
         <dt><h4><strong>Nome da Equipe:</dt></h4></strong>
@@ -27,7 +39,7 @@
         <dd>{% if equipe.ativa %}Sim{% else %}Não{% endif %}</dd>
 
         <dd class="button-container">
-            <form method="POST" action="/equipe/{{ equipe.pk }}/deletar/">
+            <form method="POST" action="/view/equipes/{{ equipe.pk }}/deletar/">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-danger btn-extra-small">Excluir</button>
             </form>

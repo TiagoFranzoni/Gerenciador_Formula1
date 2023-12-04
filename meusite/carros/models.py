@@ -8,7 +8,7 @@ class Carros(Model):
     nome = CharField(max_length=200, verbose_name='nome do carro')
     modelo = CharField(max_length=200, verbose_name='modelo do carro', null=True,  blank=True)
     detalhes = TextField(verbose_name='detalhes', null=True,  blank=True)
-    ativo = BooleanField(default=False, verbose_name='ativo', null=True,  blank=True)
+    ativo = BooleanField(default=True, verbose_name='ativo')
     equipe = ForeignKey('equipes.Equipes', on_delete=CASCADE, verbose_name='equipe', null=True,  blank=True)
 
     def __str__(self):

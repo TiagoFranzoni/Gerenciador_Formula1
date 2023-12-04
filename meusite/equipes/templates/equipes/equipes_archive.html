@@ -24,7 +24,7 @@
         </div>
     </div>
     <a class="btn btn-success" href="/api/equipes">API</a>
-    <a class="btn btn-primary" href="/equipes/criar/">Adicionar Equipes</a>
+    <a class="btn btn-primary" href="/view/equipes/criar">Adicionar Equipes</a>
     <table class="table">
         <thead>
         <tr>
@@ -33,9 +33,9 @@
         </tr>
         </thead>
         <tbody>
-        {% for item in equipes %}
+        {% for item in equipe %}
             <tr>
-                <td><a href="/equipes/{{ item.pk }}">{{ item.nome }}</a></td>
+                <td><a href="/view/equipes/detail/{{ item.pk }}">{{ item.nome }}</a></td>
                 <td>
                     {% if item.ativa %}
                         Sim
@@ -44,7 +44,7 @@
                     {% endif %}
                 </td>
                 <td>
-                    <form method="POST" action="/equipes/{{ item.pk }}/deletar/">
+                    <form method="POST" action="/view/equipes/{{ item.pk }}/deletar/">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger btn-extra-small">Excluir</button>
                     </form>
