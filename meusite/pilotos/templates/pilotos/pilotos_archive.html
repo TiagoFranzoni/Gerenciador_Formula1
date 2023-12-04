@@ -32,7 +32,7 @@
         <tbody>
         {% for item in piloto %}
             <tr>
-                <td><a href="/view/pilotos/{{ item.pk }}">{{ item.nome }}</a></td>
+                <td><a href="/view/pilotos/detail/{{ item.pk }}">{{ item.nome }}</a></td>
                 <td>
                     {% if item.ativo %}
                         Sim

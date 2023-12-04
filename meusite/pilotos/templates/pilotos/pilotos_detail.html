@@ -36,7 +36,7 @@
         <dd>{% if piloto.ativo %}Sim{% else %}Não{% endif %}</dd>
 
         <dd class="button-container">
-            <form method="POST" action="/view/piloto/{{ piloto.pk }}/deletar/">
+            <form method="POST" action="/view/pilotos/{{ piloto.pk }}/deletar/">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-danger btn-extra-small">Excluir</button>
             </form>
