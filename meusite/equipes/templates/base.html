@@ -35,6 +35,14 @@
                 </div><!-- container-fluid -->
             </nav> <!-- Navbar -->
 
+            <nav aria-label="breadcrumb" style="margin-top: -20px; margin-bottom: -27px;">
+                <ol class="breadcrumb" style="background-color: rgba(255, 255, 255, 0.0); font-weight: bold;">
+                    <li class="breadcrumb-item"><a href="/" style="color: rgb(164, 64, 64);">Home</a></li>
+                    {% block breadcrumb %}
+                    {% endblock %}
+                </ol>
+            </nav>
+
             <div class="jumbotron" style="background-color: rgba(255, 255, 255, 0.78);">
                 {% block content %}
                 {% endblock %}

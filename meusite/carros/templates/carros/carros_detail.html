@@ -1,4 +1,8 @@
 {% extends "base.html" %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="/view/carros" style="color: rgb(164, 64, 64);">Carros</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Detalhes</li>
+{% endblock %}
 {% block content %}
     <style>
         .button-container {

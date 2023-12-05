@@ -1,4 +1,9 @@
 {% extends "base.html" %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="/view/carros" style="color: rgb(164, 64, 64);">Carros</a></li>
+    <li class="breadcrumb-item"><a href="/view/carros/detail/{{ carro.pk }}" style="color: rgb(164, 64, 64);">Detalhes</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Editar</li>
+{% endblock %}
 {% block content %}
 <div style="
     display: flex; 

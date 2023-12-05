@@ -1,4 +1,8 @@
 {% extends "base.html" %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="/view/equipes" style="color: rgb(164, 64, 64);">Equipes</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Criar</li>
+{% endblock %}
 {% block content %}
 {% if messages %}
     <div class="messages">

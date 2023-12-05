@@ -1,6 +1,7 @@
 {% extends "rest_framework/base.html" %} {% block content %}
 <!-- Seus botões personalizados -->
-<a href="/" class="btn btn-primary mt-3" style="margin-top: 10px;">Voltar</a>
+<!-- <a href="/" class="btn btn-primary mt-3" style="margin-top: 10px;">Voltar</a> -->
+<button onclick="history.back();" class="btn btn-primary mt-3" style="margin-top: 10px;">Voltar</button>
 
 <!-- Mantenha o resto do conteúdo do template original -->
 {{ block.super }} {% endblock %}
