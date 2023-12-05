@@ -3,6 +3,7 @@ from django.urls import path
 from carros.views import CarrosView, CarrosViewDetail, CarrosViewExclui, CarrosViewEdita, CarrosViewAdiciona
 from carros.views import CarrosList, CarrosDetailList
 # from carros.views import CarrosView
+from carros.views import ResetDbCarros
 
 
 urlpatterns = [
@@ -15,4 +16,6 @@ urlpatterns = [
     path('carros/', CarrosList.as_view(), name="carro-list"),
     path('carros/<int:pk>/', CarrosDetailList.as_view(), name='carro-detail'),
     path('carros/criar/', CarrosDetailList.as_view(), name='carro-api-criar'),
+
+    path('reset_db_carros/', ResetDbCarros.as_view(), name='reset_db_carros'),
     ]

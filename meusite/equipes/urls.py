@@ -4,6 +4,7 @@ from equipes.views import Home
 from equipes.views import EquipesView, EquipesViewDetail, EquipesViewExclui, EquipesViewEdita, EquipesViewAdiciona
 from equipes.views import EquipesList, EquipesDetailList
 from equipes.views import Login, CriaUsuario
+from equipes.views import ResetDbEquipes
 
 
 urlpatterns = [
@@ -21,4 +22,6 @@ urlpatterns = [
 
     path('criar_usuario/', CriaUsuario.as_view()),
     path('login/', Login.as_view()),
+
+    path('reset_db_equipes/', ResetDbEquipes.as_view(), name='reset_db_equipes'),
     ]

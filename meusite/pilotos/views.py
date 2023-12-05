@@ -18,6 +18,9 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from .serializers import PilotosSerializer
 from django.views.generic.list import ListView
+from django.http import HttpResponse
+from django.db import connection
+from django.views import View
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
@@ -116,3 +119,13 @@ class PilotosDetailList(generics.RetrieveUpdateDestroyAPIView):
     """docstring"""
     queryset = Pilotos.objects.all()
     serializer_class = PilotosSerializer
+
+
+class ResetDbPilotos(View):
+    """docstring"""
+    def get(self, request):
+        """docstring"""
+        with connection.cursor() as cursor:
+            cursor.execute("DELETE FROM pilotos_pilotos;")
+            cursor.execute("UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = 'pilotos_pilotos';")
+        return HttpResponse("Tabela Pilotos resetada.")

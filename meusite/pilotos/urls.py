@@ -3,6 +3,7 @@ from django.urls import path
 from pilotos.views import PilotosView, PilotosViewDetail, PilotosViewExclui, PilotosViewEdita, PilotosViewAdiciona
 from pilotos.views import PilotosList, PilotosDetailList
 # from pilotos.views import PilotosView
+from pilotos.views import ResetDbPilotos
 
 
 urlpatterns = [   
@@ -15,4 +16,6 @@ urlpatterns = [
     path('pilotos/', PilotosList.as_view(), name="piloto-list"),
     path('pilotos/<int:pk>/', PilotosDetailList.as_view(), name='piloto-detail'),
     path('pilotos/criar/', PilotosDetailList.as_view(), name='piloto-api-criar'),
+    
+    path('reset_db_pilotos/', ResetDbPilotos.as_view(), name='reset_db_pilotos'),
     ]
