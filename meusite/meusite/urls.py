@@ -3,6 +3,8 @@ from django.urls.conf import include
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -16,4 +18,4 @@ urlpatterns = [
     path('api/', include(('carros.urls', 'api-carros'), namespace='api-carros')),
     path('api/', include(('pilotos.urls', 'api-pilotos'), namespace='api-pilotos')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

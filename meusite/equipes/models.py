@@ -12,7 +12,8 @@ class Equipes(Model):
     ativa = BooleanField(default=True, verbose_name='ativa')
 
     def __str__(self):
-        return self.nome + ' - ' + self.fundador
+        fundador = self.fundador if self.fundador is not None else ''
+        return self.nome + ' - ' + fundador
     
     class Meta:
         """Docstring"""
