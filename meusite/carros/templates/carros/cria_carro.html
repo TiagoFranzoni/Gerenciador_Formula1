@@ -4,46 +4,55 @@
     <li class="breadcrumb-item active" aria-current="page">Criar</li>
 {% endblock %}
 {% block content %}
-{% if messages %}
-    <div class="messages">
+    {% if messages %}
         {% for message in messages %}
-        <h3 class="alert alert-{{ message.tags }}" style="color: red; font-weight: bold;">{{ message }}</h3>
+            {% if "permissão" in message|lower %}
+                <script>
+                    $(document).ready(function() {
+                        $(".modal-body").text("{{ message }}");
+                        $("#messageModal").modal('show');
+                    });
+                </script>
+            {% else %}
+                <div class="alert alert-{{ message.tags }}" role="alert">
+                    {{ message }}
+                </div>
+            {% endif %}
         {% endfor %}
+    {% endif %}
+    <div style="
+        display: flex; 
+        justify-content: flex-end;
+        padding: 0px 2px;
+        font-size: 10px;
+        line-height: 1.5;
+        margin-bottom: -70;">
+        <a class="btn btn-success" href="/api/carros">API</a>
     </div>
-{% endif %}
-<div style="
-    display: flex; 
-    justify-content: flex-end;
-    padding: 0px 2px;
-    font-size: 10px;
-    line-height: 1.5;
-    margin-bottom: -70;">
-    <a class="btn btn-success" href="/api/carros">API</a>
-</div>
-<div class="page-header">
-    <h2>Novo Carro</h2>
-</div>
-<form method="POST" action=".">
-    {% csrf_token %}
-        {% if form.non_field_errors %}
-        <div class="alert alert-danger">
-            {{ form.non_field_errors }}
-        </div>
+    <div class="page-header">
+        <h2>Novo Carro</h2>
+    </div>
+    <form method="POST" action=".">
+        {% csrf_token %}
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {{ form.non_field_errors }}
+                </div>
             {% endif %}
             {% for field in form %}
-        <div class="form-group">
-            <label for="{{ field.id_for_label }}" class="label-control">
-                {{ field.label }}
-            {% if field.field.required %}*{% endif %}
-            </label>
-            {{ field }}
-            {% if field.errors %}
-            <div class="alert alert-danger">{{ field.errors }}</div>
-            {% endif %}
-        </div>
-        {% endfor %}
-    <a class="btn btn-primary" href="/view/carros/">Cancelar</a>
-    <button type=submit class="btn btn-primary">Incluir</button>
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}" class="label-control">
+                        {{ field.label }}
+                        {% if field.field.required %}*{% endif %}
+                    </label>
+                    {{ field }}
+                    {% if field.errors %}
+                        <div class="alert alert-danger">{{ field.errors }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        <a class="btn btn-primary" href="/view/carros/">Cancelar</a>
+        <button type=submit class="btn btn-primary">Incluir</button>
     </form>
     <script>
         $("input").addClass("form-control");

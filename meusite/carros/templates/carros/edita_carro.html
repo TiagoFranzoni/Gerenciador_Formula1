@@ -5,39 +5,55 @@
     <li class="breadcrumb-item active" aria-current="page">Editar</li>
 {% endblock %}
 {% block content %}
-<div style="
-    display: flex; 
-    justify-content: flex-end;
-    padding: 0px 2px;
-    font-size: 10px;
-    line-height: 1.5;
-    margin-bottom: -70;">
-    <a class="btn btn-success" href="/api/carros/{{ carro.pk }}">API</a>
-</div>
-<div class="page-header">
-    <h2>Editar Carros</h2>
-</div>
-<form method="POST" action=".">
-    {% csrf_token %}
-        {% if form.non_field_errors %}
-        <div class="alert alert-danger">
-            {{ form.non_field_errors }}
-        </div>
+    {% if messages %}
+        {% for message in messages %}
+            {% if "permissão" in message|lower %}
+                <script>
+                    $(document).ready(function() {
+                        $(".modal-body").text("{{ message }}");
+                        $("#messageModal").modal('show');
+                    });
+                </script>
+            {% else %}
+                <div class="alert alert-{{ message.tags }}" role="alert">
+                    {{ message }}
+                </div>
             {% endif %}
-            {% for field in form %}
-        <div class="form-group">
-            <label for="{{ field.id_for_label }}" class="label-control">
-                {{ field.label }}
-            {% if field.field.required %}*{% endif %}
-            </label>
-            {{ field }}
-            {% if field.errors %}
-            <div class="alert alert-danger">{{ field.errors }}</div>
-            {% endif %}
-        </div>
         {% endfor %}
-    <a class="btn btn-primary" href="/view/carros/detail/{{ carro.pk }}">Cancelar</a>
-    <button type=submit class="btn btn-primary">Salvar</button>
+    {% endif %}
+    <div style="
+        display: flex; 
+        justify-content: flex-end;
+        padding: 0px 2px;
+        font-size: 10px;
+        line-height: 1.5;
+        margin-bottom: -70;">
+        <a class="btn btn-success" href="/api/carros/{{ carro.pk }}">API</a>
+    </div>
+    <div class="page-header">
+        <h2>Editar Carros</h2>
+    </div>
+    <form method="POST" action=".">
+        {% csrf_token %}
+            {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+                {{ form.non_field_errors }}
+            </div>
+                {% endif %}
+                {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}" class="label-control">
+                    {{ field.label }}
+                {% if field.field.required %}*{% endif %}
+                </label>
+                {{ field }}
+                {% if field.errors %}
+                    <div class="alert alert-danger">{{ field.errors }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <a class="btn btn-primary" href="/view/carros/detail/{{ carro.pk }}">Cancelar</a>
+        <button type=submit class="btn btn-primary">Salvar</button>
     </form>
     <script>
         $("input").addClass("form-control");

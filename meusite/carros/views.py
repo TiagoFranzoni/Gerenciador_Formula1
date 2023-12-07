@@ -59,7 +59,7 @@ class CarrosViewAdiciona(View):
         if form.is_valid():
             nome_carro = form.cleaned_data.get('nome')
             if Carros.objects.filter(nome=nome_carro).exists():
-                messages.error(request, f'Uma biblioteca com o nome "{nome_carro}" já existe.')
+                messages.warning(request, f'Já existe um cadastro: "{nome_carro}".')
                 self.context['form'] = form
                 return render(request, self.template_name, self.context)
             form.save()
@@ -94,12 +94,18 @@ class CarrosViewExclui(View):
 
     def post(self, request, *args, **kwargs):
         """docstring"""
+        if not request.user.has_perm('carros.can_delete_carro'):
+            messages.error(request, "Você não tem permissão para deletar Carros.")
+            return redirect('/view/carros')
         carro = Carros.objects.get(pk=kwargs['pk'])
         carro.delete()
         return redirect('/view/carros')
 
     def delete(self, request, *args, **kwargs):
         """docstring"""
+        if not request.user.has_perm('carros.can_delete_carro'):
+            messages.error(request, "Você não tem permissão para deletar Carros.")
+            return redirect('/view/carros')
         carro = Carros.objects.get(pk=kwargs['pk'])
         carro.delete()
         return redirect('/view/carros')

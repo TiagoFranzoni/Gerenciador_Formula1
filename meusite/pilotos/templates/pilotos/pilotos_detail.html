@@ -4,6 +4,22 @@
     <li class="breadcrumb-item active" aria-current="page">Detalhes</li>
 {% endblock %}
 {% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            {% if "permissão" in message|lower %}
+                <script>
+                    $(document).ready(function() {
+                        $(".modal-body").text("{{ message }}");
+                        $("#messageModal").modal('show');
+                    });
+                </script>
+            {% else %}
+                <div class="alert alert-{{ message.tags }}" role="alert">
+                    {{ message }}
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
     <style>
         .button-container {
             display: flex;

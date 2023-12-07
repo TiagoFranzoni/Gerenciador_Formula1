@@ -22,3 +22,7 @@ class Carros(Model):
         verbose_name_plural = 'Carros'
         verbose_name = 'Carro'
         ordering = ['nome']
+
+        permissions = [
+            ("can_delete_carro", "Can delete Carro"),
+        ]

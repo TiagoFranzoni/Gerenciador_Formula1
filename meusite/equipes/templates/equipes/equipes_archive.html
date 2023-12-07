@@ -3,6 +3,22 @@
     <li class="breadcrumb-item active" aria-current="page">Equipes</li>
 {% endblock %}
 {% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            {% if "permissão" in message|lower %}
+                <script>
+                    $(document).ready(function() {
+                        $(".modal-body").text("{{ message }}");
+                        $("#messageModal").modal('show');
+                    });
+                </script>
+            {% else %}
+                <div class="alert alert-{{ message.tags }}" role="alert">
+                    {{ message }}
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
     <style>
         .btn-extra-small {
             padding: 0px 2px;
@@ -30,11 +46,11 @@
     <a class="btn btn-primary" href="/view/equipes/criar">Adicionar Equipes</a>
     <table class="table">
         <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Fundador</th>
-            <th>Ativa</th>
-        </tr>
+            <tr>
+                <th>Nome</th>
+                <th>Fundador</th>
+                <th>Ativa</th>
+            </tr>
         </thead>
         <tbody>
         {% for item in equipe %}

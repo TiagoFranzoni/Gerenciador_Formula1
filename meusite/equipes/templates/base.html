@@ -4,6 +4,9 @@
         <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
         <title>Gerenciador Equipes Fórmula 1</title>
 
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
@@ -12,7 +15,6 @@
         
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
 
     </head>
     <body style="background: url('{% static 'imagens/fundo.jpg' %}') no-repeat center center fixed; 
@@ -51,6 +53,25 @@
                 {% endblock %}
             </div><!-- jambotron-->
         </div> <!-- Container -->
+
+    <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="messageModalLabel">Mensagem</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Aqui é onde a mensagem será inserida -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+            </div>
+        </div>
+    </div>
 
     </body>
 </html>

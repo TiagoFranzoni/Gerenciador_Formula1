@@ -18,3 +18,7 @@ class Pilotos(Model):
         verbose_name_plural = 'Pilotos'
         verbose_name = 'Piloto'
         ordering = ['nome']
+
+        permissions = [
+            ("can_delete_piloto", "Can delete Piloto"),
+        ]

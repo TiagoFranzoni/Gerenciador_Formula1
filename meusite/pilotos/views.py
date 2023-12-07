@@ -69,7 +69,7 @@ class PilotosViewAdiciona(View):
         if form.is_valid():
             nome_piloto = form.cleaned_data.get('nome')
             if Pilotos.objects.filter(nome=nome_piloto).exists():
-                messages.error(request, f'Uma biblioteca com o nome "{nome_piloto}" já existe.')
+                messages.warning(request, f'Já existe um cadastro: "{nome_piloto}".')
                 self.context['form'] = form
                 return render(request, self.template_name, self.context)
             form.save()
@@ -104,12 +104,18 @@ class PilotosViewExclui(View):
 
     def post(self, request, *args, **kwargs):
         """docstring"""
+        if not request.user.has_perm('pilotos.can_delete_piloto'):
+            messages.error(request, "Você não tem permissão para deletar Pilotos.")
+            return redirect('/view/pilotos')
         piloto = Pilotos.objects.get(pk=kwargs['pk'])
         piloto.delete()
         return redirect('/view/pilotos')
 
     def delete(self, request, *args, **kwargs):
         """docstring"""
+        if not request.user.has_perm('pilotos.can_delete_piloto'):
+            messages.error(request, "Você não tem permissão para deletar Pilotos.")
+            return redirect('/view/pilotos')
         piloto = Pilotos.objects.get(pk=kwargs['pk'])
         piloto.delete()
         return redirect('/view/pilotos')

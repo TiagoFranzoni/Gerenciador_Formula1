@@ -70,7 +70,7 @@ class EquipesViewAdiciona(View):
         if form.is_valid():
             nome_equipe = form.cleaned_data.get('nome')
             if Equipes.objects.filter(nome=nome_equipe).exists():
-                messages.error(request, f'Uma biblioteca com o nome "{nome_equipe}" já existe.')
+                messages.warning(request, f'Já existe um cadastro: "{nome_equipe}".')
                 self.context['form'] = form
                 return render(request, self.template_name, self.context)
             form.save()
@@ -105,12 +105,18 @@ class EquipesViewExclui(View):
 
     def post(self, request, *args, **kwargs):
         """docstring"""
+        if not request.user.has_perm('equipes.can_delete_equipe'):
+            messages.error(request, "Você não tem permissão para deletar Equipes.")
+            return redirect('/view/equipes')
         equipe = Equipes.objects.get(pk=kwargs['pk'])
         equipe.delete()
         return redirect('/view/equipes')
 
     def delete(self, request, *args, **kwargs):
         """docstring"""
+        if not request.user.has_perm('equipes.can_delete_equipe'):
+            messages.error(request, "Você não tem permissão para deletar Equipes.")
+            return redirect('/view/equipes')
         equipe = Equipes.objects.get(pk=kwargs['pk'])
         equipe.delete()
         return redirect('/view/equipes')

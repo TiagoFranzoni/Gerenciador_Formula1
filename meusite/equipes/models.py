@@ -14,9 +14,13 @@ class Equipes(Model):
     def __str__(self):
         fundador = self.fundador if self.fundador is not None else ''
         return self.nome + ' - ' + fundador
-    
+
     class Meta:
         """Docstring"""
         verbose_name_plural = 'Equipes'
         verbose_name = 'Equipe'
         ordering = ['nome']
+
+        permissions = [
+            ("can_delete_equipe", "Can delete Equipe"),
+        ]
