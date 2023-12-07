@@ -29,6 +29,9 @@
                             <h1>Gerenciador Fórmula 1</h1>
                         </div>
                         {% if user.is_authenticated %}
+                            {% if user.is_superuser %}
+                            <a href="/admin" class="btn btn-danger" style="font-weight: bold; margin-right: 20px;">Painel Admin</a>
+                            {% endif %}
                             <a href="{% url 'logout' %}" class="btn btn-default btn-sm" style="color:brown; font-weight: bold;">LOG OUT</a>
                         {% endif %}
                     </div><!-- navbar-header -->
