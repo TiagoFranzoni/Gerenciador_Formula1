@@ -7,21 +7,23 @@
         {% csrf_token %}
         {{ form.non_field_errors }}
         {% for field in form %}
-        <div class="form-group">
-            <label for="{{ field.id_for_label }}" class="label-control">
-            {{ field.label }}
-            {% if field.field.required %}*{% endif %}
-            </label>
-            {{ field }}
-            {% if field.errors %}
-            <div class="alert alert-danger">{{ field.errors }}</div>
-            {% endif %}
-        </div>
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}" class="label-control">
+                    {{ field.label }}
+                    {% if field.field.required %}*{% endif %}
+                </label>
+                {{ field }}
+                {% if field.errors %}
+                    <div class="alert alert-danger">{{ field.errors }}</div>
+                {% endif %}
+            </div>
         {% endfor %}
-    <a href="/login/" class="btn btn-info">Cancelar</a>
-    <input type=submit class="btn btn-primary" value="Criar">
+        <div style="display: flex; justify-content: flex-end;">
+            <a href="/login/" class="btn btn-info" style="margin-right: 10px;">Cancelar</a>
+            <input type="submit" class="btn btn-primary" value="Criar" style="width: auto;">
+        </div>
     </form>
     <script>
-    $("input").addClass("form-control");
+        $("input").addClass("form-control");
     </script>
 {% endblock %}
